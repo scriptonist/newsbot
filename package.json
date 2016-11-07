@@ -2,7 +2,7 @@
   "name": "newsapi-bot",
   "version": "1.0.0",
   "description": "A Bot using the microsoft bot framework that collects some news stories",
-  "main": "index.js",
+  "main": "app.js",
   "dependencies": {
     "node-rest-client": "^2.0.1"
   },
