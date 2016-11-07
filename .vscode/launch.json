@@ -16,8 +16,7 @@
             ],
             "env": {
                 "NODE_ENV": "development",
-                "MICROSOFT_APP_ID":"c6eb7529-51b4-449b-a0cb-142dc897a772",
-                "MICROSOFT_APP_PASSWORD":"0xgSNbaB1TrGMt8YkHdxEka"
+                
 
             },
             "console": "internalConsole",
