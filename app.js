@@ -47,7 +47,7 @@ bot.dialog('/showpublishers',[
         session.send("These are some worth Trying !\n the-Hindu,the-verge,techcruch,bbc-bews,cnn,cnbc,boolmberg,espn,espn-cric-info,google-news,the-times-of-india,time")    
     }
 ]);
-dialog.onDefault([
+dialog.matches('provider',[
     function (session) {
         builder.Prompts.text(session, 'Which Publisher ? ');
     },
@@ -79,3 +79,6 @@ dialog.onDefault([
     }
 
 ]);
+dialog.onDefault(function(session){
+    session.send("Soory I did'nt Get You!");
+})
