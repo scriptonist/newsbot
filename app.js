@@ -44,8 +44,9 @@ dialog.matches('whatCanUDo',[
 ]);
 bot.dialog('/showpublishers',[
     function(session){
-        session.send("I can Bring You news ! \nThese are some worth Trying !\n the-Hindu,the-verge,techcruch,bbc-bews,cnn,cnbc,boolmberg,espn,espn-cric-info,google-news,the-times-of-india,time")    
+        session.endDialog("I can Bring You news ! \nThese are some worth Trying !\n the-Hindu,the-verge,techcruch,bbc-bews,cnn,cnbc,boolmberg,espn,espn-cric-info,google-news,the-times-of-india,time")    
     }
+    
 ]);
 dialog.matches('provider',[
     function (session) {
