@@ -27,8 +27,21 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 // Bots Dialogs
 //=========================================================
+var intents = new builder.IntentDialog();
 
-bot.dialog('/', [
+bot.dialog('/',intents);
+
+intent.matches(/^show avialable publishers/i,[
+    function(session){
+        session.beginDialog("/showpublishers");
+    }
+]);
+bot.dialog('/showpublishers',[
+    function(session){
+        session.send("These are some worth Trying !\n The Hindu,the verge,techcruch,BBC News,CNN,CNBC,Bloomberg,espn")    
+    }
+]);
+intent.onDefault([
     function (session) {
         builder.Prompts.text(session, 'Which Publisher ? ');
     },
