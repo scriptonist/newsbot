@@ -31,7 +31,7 @@ var intents = new builder.IntentDialog();
 
 bot.dialog('/',intents);
 
-intent.matches(/^show avialable publishers/i,[
+intents.matches(/^show avialable publishers/i,[
     function(session){
         session.beginDialog("/showpublishers");
     }
@@ -41,7 +41,7 @@ bot.dialog('/showpublishers',[
         session.send("These are some worth Trying !\n The Hindu,the verge,techcruch,BBC News,CNN,CNBC,Bloomberg,espn")    
     }
 ]);
-intent.onDefault([
+intents.onDefault([
     function (session) {
         builder.Prompts.text(session, 'Which Publisher ? ');
     },
