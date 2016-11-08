@@ -4,6 +4,7 @@
   "description": "A Bot using the microsoft bot framework that collects some news stories",
   "main": "app.js",
   "dependencies": {
+    "dotenv": "^2.0.0",
     "env": "0.0.2",
     "node-rest-client": "^2.0.1"
   },

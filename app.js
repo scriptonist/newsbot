@@ -1,7 +1,8 @@
 var builder = require('botbuilder');
 var restify = require('restify');
 var Client = require('node-rest-client').Client;
-
+var dotenv = require('dotenv');
+dotenv.load();
 
 
 //=========================================================
