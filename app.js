@@ -2,6 +2,9 @@ var builder = require('botbuilder');
 var restify = require('restify');
 var Client = require('node-rest-client').Client;
 var dotenv = require('dotenv');
+var model = process.env.LUIS_MODEL;
+var recogonizer = new builder.LuisRecognizer(model);
+var dialog = new builder.IntentDialog({recognizers:[recogonizer]});
 dotenv.load();
 
 
@@ -27,21 +30,24 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 // Bots Dialogs
 //=========================================================
-var intents = new builder.IntentDialog();
+bot.dialog('/',dialog);
 
-bot.dialog('/',intents);
-
-intents.matches(/^show avialable publishers/i,[
+dialog.matches('showPublishers',[
     function(session){
         session.beginDialog("/showpublishers");
     }
 ]);
-bot.dialog('/showpublishers',[
+dialog.matches('whatCanUDo',[
     function(session){
-        session.send("These are some worth Trying !\n The Hindu,the verge,techcruch,BBC News,CNN,CNBC,Bloomberg,espn")    
+        session.send("I can fetch the top article from a provider you specify!");
     }
 ]);
-intents.onDefault([
+bot.dialog('/showpublishers',[
+    function(session){
+        session.send("These are some worth Trying !\n the-Hindu,the-verge,techcruch,bbc-bews,cnn,cnbc,boolmberg,espn,espn-cric-info,google-news,the-times-of-india,time")    
+    }
+]);
+dialog.onDefault([
     function (session) {
         builder.Prompts.text(session, 'Which Publisher ? ');
     },
