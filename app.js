@@ -4,7 +4,8 @@ var Client = require('node-rest-client').Client;
 var dotenv = require('dotenv');
 var model = process.env.LUIS_MODEL;
 var recogonizer = new builder.LuisRecognizer(model);
-var dialog = new builder.IntentDialog({recognizers:[recogonizer]});
+var dialog = new builder.IntentDialog();
+
 dotenv.load();
 
 
@@ -32,12 +33,12 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 bot.dialog('/',dialog);
 
-dialog.matches('showPublishers',[
+dialog.matches(/^showPublishers/,[
     function(session){
         session.beginDialog("/showpublishers");
     }
 ]);
-dialog.matches('whatCanUDo',[
+dialog.matches(/^what Can you Do/i,[
     function(session){
         session.send("I can fetch the top article from a provider you specify!");
     }
@@ -48,7 +49,7 @@ bot.dialog('/showpublishers',[
     }
     
 ]);
-dialog.matches('provider',[
+dialog.onDefault([
     function (session) {
         builder.Prompts.text(session, 'Which Publisher ? ');
     },
@@ -80,6 +81,4 @@ dialog.matches('provider',[
     }
 
 ]);
-dialog.onDefault(function(session){
-    session.send("Soory I did'nt Get You!");
-})
+
