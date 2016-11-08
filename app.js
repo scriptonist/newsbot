@@ -50,6 +50,9 @@ bot.dialog('/showpublishers',[
     
 ]);
 dialog.onDefault([
+    function (session) {
+        builder.Prompts.text(session, 'Which Publisher ? ');
+    },
     function (session,results) {
         var source = results.response;
         var client = new Client();
