@@ -58,7 +58,7 @@ dialog.onDefault([
         var client = new Client();
         var session = session;
         session.send("Showing Top Articles in %s",source);
-        client.get("https://newsapi.org/v1/articles?source="+source+"&apiKey=266809769f7746bd8129a950adf53046" 
+        client.get("api.github.com/search/users?q="+source
                     , 
                     function (data, response) {
                      // parsed response body as js object 
@@ -66,12 +66,12 @@ dialog.onDefault([
                         .textFormat(builder.TextFormat.xml)
                         .attachments([
                             new builder.HeroCard(session)
-                                .title(data.articles[0].title)
-                                .text(data.articles[0].description)
+                                .title(data.items[0].login)
+                                .text(data.items[0].url)
                                 .images([
-                                    builder.CardImage.create(session, data.articles[0].urlToImage)
+                                    builder.CardImage.create(session, data.items[0].avatar_url)
                                 ])
-                                .tap(builder.CardAction.openUrl(session, data.articles[0].url))
+                                .tap(builder.CardAction.openUrl(session, data.items[0].html_url))
                         ]);
                     session.endDialog(msg);
 
