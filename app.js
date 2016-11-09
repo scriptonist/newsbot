@@ -62,6 +62,7 @@ dialog.onDefault([
                     , 
                     function (data, response) {
                      // parsed response body as js object 
+                    session.endDialog(data);
                     var msg = new builder.Message(session)
                         .textFormat(builder.TextFormat.xml)
                         .attachments([
